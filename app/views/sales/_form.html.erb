@@ -1,0 +1,67 @@
+<%= form_with(model: sale) do |form| %>
+  <% if sale.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+      <ul>
+        <% sale.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :bill_no, style: "display: block" %>
+    <%= form.text_field :bill_no %>
+  </div>
+
+  <div>
+    <%= form.label :customer_name, style: "display: block" %>
+    <%= form.text_field :customer_name %>
+  </div>
+
+  <div>
+  <%= form.label :product %>
+  <%= form.collection_select :product_id, Product.all, :id, :name, prompt: true %>
+</div>
+
+  <div>
+    <%= form.label :quantity, style: "display: block" %>
+    <%= form.number_field :quantity %>
+  </div>
+
+  <div>
+    <%= form.label :total, style: "display: block" %>
+    <%= form.text_field :total %>
+  </div>
+
+  <div>
+    <%= form.label :discount, style: "display: block" %>
+    <%= form.text_field :discount %>
+  </div>
+
+  <div>
+    <%= form.label :taxable_amount, style: "display: block" %>
+    <%= form.text_field :taxable_amount %>
+  </div>
+
+  <div>
+    <%= form.label :vat, style: "display: block" %>
+    <%= form.text_field :vat %>
+  </div>
+
+  <div>
+    <%= form.label :net_total, style: "display: block" %>
+    <%= form.text_field :net_total %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
