@@ -8,12 +8,18 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
 gem 'tailwindcss-rails', '~> 2.0', '>= 2.0.29'
 
+gem 'shutup', '~> 0.1.2'
+
+gem 'byebug', '~> 11.1', '>= 11.1.3'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
 gem 'pg'
 
 gem 'foreman', '~> 0.87.2'
+
+gem 'jquery-rails'
 
 gem 'devise', '~> 4.9', '>= 4.9.2'
 

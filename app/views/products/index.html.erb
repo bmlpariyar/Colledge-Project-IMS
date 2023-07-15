@@ -1,14 +1,33 @@
+
 <p style="color: green"><%= notice %></p>
-
-<h1>Products</h1>
-
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
-  <% end %>
+<div class="w-[81%] absolute">
+  <div class="mt-4">
+    <h1 class="mb-4 text-4xl font-bold" >Products</h1>
+  </div>
+  <div class="mb-4"><%= link_to "New product", new_product_path, class: "bg-blue-400 px-2 py-2 rounded" %></div>
+  <div class="relative overflow-x-auto shadow-md" >
+    <table class="w-full text-md text-left text-gray-700">
+      <thead class="text-xl text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th class="px-6 py-3">Supplier Name</th>
+          <th class="px-6 py-3">Product Name</th>
+          <th class="px-6 py-3">Cost Price</th>
+          <th class="px-6 py-3">Selling Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr class="bg-white border-b hover:bg-gray-300">
+            <td class="px-6 py-3"><%= product.supplier.name %></td>
+            <td class="px-6 py-3"><%= link_to product.name, product_path(product) %></td>
+            <td class="px-6 py-3"><%= product.cost_price %></td>
+            <td class="px-6 py-3"><%= product.selling_price %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<%= link_to "New product", new_product_path %>
+
+

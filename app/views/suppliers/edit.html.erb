@@ -1,10 +1,7 @@
-<h1>Editing supplier</h1>
-
-<%= render "form", supplier: @supplier %>
-
-<br>
-
-<div>
-  <%= link_to "Show this supplier", @supplier %> |
-  <%= link_to "Back to suppliers", suppliers_path %>
+<div class="w-[81%] absolute">
+  <h1 class=" bg-slate-300 py-4 mt-4 rounded-md font-bold text-3xl px-4">Edit supplier</h1>
+  <%= render "form", supplier: @supplier %><br>
+  <div>
+    <%= link_to "Back", suppliers_path, class:"btn-back" %>
+  </div>
 </div>

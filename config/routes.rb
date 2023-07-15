@@ -4,12 +4,17 @@ Rails.application.routes.draw do
   get 'home/index'
   resources :sales
   resources :purchases
-  resources :products
+  resources :products do
+    get 'getProduct', to: 'products#getProduct'
+  end
   resources :suppliers do
     get 'products', to: 'suppliers#products'
   end
 
   root "home#index"
+
+  
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

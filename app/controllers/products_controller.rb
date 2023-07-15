@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1 or /products/1.json
   def show
+    product = Product.find(params[:id])
   end
 
   # GET /products/new
@@ -56,6 +57,15 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def getProduct
+    product = Product.find(params[:product_id])
+    cost_price = product.cost_price
+    render json: cost_price, only: [:id, :cost_price]
+    puts cost_price
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

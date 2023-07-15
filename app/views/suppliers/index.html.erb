@@ -1,14 +1,38 @@
 <p style="color: green"><%= notice %></p>
+  <div class="w-[81%] absolute">
+    <div style="margin-top:20px">
+      <div class="mt-10">
+        <div class="mb-8">
+          <%= link_to 'New Suppliers', new_supplier_path, class: 'bg-blue-300 btn-show mr-2' %>
+        </div>
+      </div>
+      <div class="relative overflow-x-auto shadow-md mt-10">
+        <table class="w-full text-md text-left text-gray-700">
+          <thead class="text-xl text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th class="px-6 py-3">Supplier name</th>
+              <th class="px-6 py-3">Contact</th>
+              <th class="px-6 py-3">Address</th>
+              <th class="px-6 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @suppliers.each do |supplier|%>
+              <tr class="bg-white border-b hover:bg-gray-300">
+                <td class="px-6 py-4"> <%= link_to supplier.name, supplier_path(supplier) %> </td>
+                <td class="px-6 py-4"> <%= link_to supplier.number, supplier_path(supplier) %></td>
+                <td class="px-6 py-4"> <%= link_to supplier.address, supplier_path(supplier) %> </td>
+                <div>
+                  <td class="px-6 py-4 flex">
+                    <%= link_to "Edit", edit_supplier_path(supplier), class:"bg-green-300 btn-show mr-2" %>
+                    <%= button_to "Destroy", supplier, method: :delete, class:"btn-delete" %>
+                  </td>
+                </div>
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<h1>Suppliers</h1>
-
-<div id="suppliers">
-  <% @suppliers.each do |supplier| %>
-    <%= render supplier %>
-    <p>
-      <%= link_to "Show this supplier", supplier %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New supplier", new_supplier_path %>

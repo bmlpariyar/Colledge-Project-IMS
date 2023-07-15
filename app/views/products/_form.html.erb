@@ -1,3 +1,4 @@
+
 <%= form_with(model: product) do |form| %>
   <% if product.errors.any? %>
     <div style="color: red">
@@ -12,26 +13,30 @@
   <% end %>
 
   <div>
-    <%= form.label :supplier_id %>
-    <%= form.collection_select :supplier_id, Supplier.all, :id, :name, prompt: true %>
+    <%= form.label :supplier_id,"Supplier Name", style: "display: block", class:"form-label "  %>
+    <%= form.collection_select :supplier_id, Supplier.all, :id, :name, { include_blank: "Select" }, { class: "bg-white form-input" } %>
+  </div>
+  <div>
+    <% form.label :supplier_name, style: "display: block", class:"form-label "  %>
+    <% form.text_field :supplier_name, class:"form-input" %>
   </div>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :name, style: "display: block", class:"form-label "  %>
+    <%= form.text_field :name, class:"form-input" %>
   </div>
 
   <div>
-    <%= form.label :cost_price, style: "display: block" %>
-    <%= form.text_field :cost_price %>
+    <%= form.label :cost_price, style: "display: block", class:"form-label "  %>
+    <%= form.number_field :cost_price, class:"form-input" %>
   </div>
 
   <div>
-    <%= form.label :selling_price, style: "display: block" %>
-    <%= form.text_field :selling_price %>
+    <%= form.label :selling_price, style: "display: block", class:"form-label "  %>
+    <%= form.text_field :selling_price, class:"form-input" %>
   </div>
-
   <div>
-    <%= form.submit %>
+    <%= form.submit class:"btn-submit" %>
   </div>
 <% end %>
+

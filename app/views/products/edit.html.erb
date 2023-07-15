@@ -1,10 +1,9 @@
-<h1>Editing product</h1>
-
-<%= render "form", product: @product %>
-
-<br>
-
-<div>
-  <%= link_to "Show this product", @product %> |
-  <%= link_to "Back to products", products_path %>
+<div class="w-[81%] absolute">
+  <h1 class=" bg-slate-300 py-4 mt-4 rounded-md font-bold text-3xl px-4">Editing product</h1>
+    <%= render "form", product: @product %><br> 
+  <div>
+    <%= link_to "Back", products_path, class:"btn-back" %>
+  </div>
 </div>
+
+
