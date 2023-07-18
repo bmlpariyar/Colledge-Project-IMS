@@ -28,26 +28,26 @@
        <div class="flex justify-between">
          <div>
           <%= form.label :customer_name, style: "display: block" %>
-          <%= form.text_field :customer_name %>
+          <%= form.text_field :customer_name, class: "w-64" %>
         </div>
          <div>
           <div class="field">
-            <%= form.label :product_id %>
-            <%= form.collection_select(:product_id, @products, :id, :name, prompt: true) %>
+            <%= form.label :product_id, class:"block" %>
+            <%= form.collection_select(:product_id, @products, :id, :name, {prompt: true},  { class: "w-64" })  %>
           </div>
         </div>
        
            <div class="field">
             <%= form.label :"Price (per unit)", style: "display: block" %>
-            <%= form.text_field :cost_price, id: "cost_price_field", disabled: true, class:"bg-gray-200" %>
+            <%= form.text_field :cost_price, id: "cost_price_field", disabled: true, class:"bg-gray-200 w-36" %>
           </div>
           <div>
             <%= form.label :quantity, style: "display: block" %>
-            <%= form.number_field :quantity %>
+            <%= form.number_field :quantity, class: "w-36" %>
           </div>
           <div>
             <%= form.label :total, style: "display: block" %>
-            <%= form.text_field :total %>
+            <%= form.text_field :total, class: "w-40" %>
           </div>
        </div>
      </div>
