@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <div class="block w-[79em] overflow-hidden p-8 bg-white border border-gray-200 rounded-lg shadow ">
+  <div class=" overflow-hidden p-8 bg-white border border-gray-200 rounded-lg shadow ">
     <div class="mb-5">
       <div class="flex justify-between">
         <div >
@@ -27,13 +27,13 @@
     </div class="">
      <div class="flex justify-between ">
        <div class="field">
-        <%= form.label :supplier_id, class: "block" %>
-        <%= form.collection_select :supplier_id, Supplier.all, :id, :name, prompt: "Select Supplier" %>
-         </div>
+          <%= form.label :supplier_id, class: "block" %>
+          <%= form.collection_select :supplier_id, Supplier.all, :id, :name, prompt: "Select Supplier" %>
+        </div>
     
          <div class="field">
-        <%= form.label :product_id, class: "block" %>
-        <%= form.collection_select :product_id, [], :id, :name, prompt: "Select Product", id: "product_id_field" %>
+          <%= form.label :product_id, class: "block" %>
+          <%= form.collection_select :product_id, [], :id, :name, prompt: "Select Product", id: "product_id_field" %>
          </div>
 
          <div class="field">
@@ -42,13 +42,13 @@
         </div>
     
          <div>
-        <%= form.label :quantity, style: "display: block" %>
-        <%= form.number_field :quantity, id: "purchase_quantity" %>
+          <%= form.label :quantity, style: "display: block" %>
+          <%= form.number_field :quantity, id: "purchase_quantity" %>
          </div>
     
          <div>
-        <%= form.label :total, style: "display: block" %>
-        <%= form.text_field :total, id: "total_field", disabled: true, class: "bg-gray-200" %>
+          <%= form.label :total, style: "display: block" %>
+          <%= form.text_field :total, id: "total_field", readonly: true, class: "bg-gray-200"  %>
          </div>
      </div>
 
@@ -64,20 +64,20 @@
         <div class="">
           <div class="">
             <div>
-              <%= form.label :discount, style: "display: block" %>
-              <%= form.text_field :discount %>
+              <%= form.label :"discount(%)", style: "display: block" %>
+              <%= form.text_field :discount, id: "discount_field" %>
             </div>
             <div>
               <%= form.label :taxable_amount, style: "display: block" %>
-              <%= form.text_field :taxable_amount %>
+              <%= form.text_field :taxable_amount, id: "taxAmt_field",readonly: true, class: "bg-gray-200" %>
             </div>
             <div>
-              <%= form.label :vat, style: "display: block" %>
-              <%= form.text_field :vat %>
+              <%= form.label :"vat(%)", style: "display: block" %>
+              <%= form.text_field :vat, id: "vatAmt_field", value: 13,readonly: true, class: "bg-gray-200" %>
             </div>
             <div>
               <%= form.label :net_total, style: "display: block" %>
-              <%= form.text_field :net_total %>
+              <%= form.text_field :net_total, id: "netTotal_field", readonly: true, class: "bg-gray-200"  %>
             </div>
           </div>
         </div>

@@ -13,6 +13,7 @@ class SalesController < ApplicationController
   # GET /sales/new
   def new
     @sale = Sale.new
+    @products = Product.all
   end
 
   # GET /sales/1/edit
@@ -65,6 +66,6 @@ class SalesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sale_params
-      params.require(:sale).permit(:bill_no, :customer_name, :product_id, :quantity, :total, :discount, :taxable_amount, :vat, :net_total, :description)
+      params.require(:sale).permit(:bill_no, :date, :customer_name, :product_id, :quantity, :total, :discount, :taxable_amount, :vat, :net_total, :description)
     end
 end

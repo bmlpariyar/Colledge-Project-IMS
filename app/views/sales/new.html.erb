@@ -1,9 +1,7 @@
-<h1>New sale</h1>
-
-<%= render "form", sale: @sale %>
-
-<br>
-
-<div>
-  <%= link_to "Back to sales", sales_path %>
+<p style="color: green"><%= notice %></p>
+<div class="w-[81%] absolute">
+  <h1 class=" bg-slate-300 py-4 mt-4 rounded-md font-bold text-3xl px-4">New Purchases</h1>
+  
+  <div class="mt-2"><%= render "form", sale: @sale %></div>
+  <br>
 </div>

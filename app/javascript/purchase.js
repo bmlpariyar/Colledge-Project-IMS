@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const supplierSelect = document.querySelector("#purchase_supplier_id");
   const productSelect = document.querySelector("#purchase_product_id");
   const quantity = document.querySelector("#purchase_quantity");
-  const getTotal = document.getElementById("#total_field")
+  const discount = document.querySelector("#discount_field");
 
 
   //for product 
@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", function() {
   function updateFields() {
     const productId = productSelect.value;
     const quantityValue = quantity.value;
+    const discountValue = discount.value;
+    const vatValue = document.getElementById("vatAmt_field").value;
+    
   
     if (productId !== "") {
       fetch(`/products/${productId}/getProduct`)
@@ -62,12 +65,28 @@ document.addEventListener("DOMContentLoaded", function() {
             const total = qData * cost_price;
     
             document.getElementById("total_field").value = total;
-          }
+          };
+          if(discountValue !== ""){
+            const disountTotal = parseInt(document.getElementById("total_field").value);
+            const discountAmount = (discountValue/100) * disountTotal;
+            const taxAmount = disountTotal - discountAmount;
+
+            document.getElementById("taxAmt_field").value = taxAmount;
+          };
+          if(vatValue !== ""){
+            const taxAmount = parseInt(document.getElementById("taxAmt_field").value);
+            console.log(typeof(taxAmount));
+            const vatAmount = (vatValue/100)*taxAmount;
+            
+            const netTotal = taxAmount + vatAmount;
+            document.getElementById("netTotal_field").value = netTotal;
+          };
         });
     }
   }
   
   productSelect.addEventListener("change", updateFields);
   quantity.addEventListener("change", updateFields);
+  discount.addEventListener("change", updateFields)
 });
 

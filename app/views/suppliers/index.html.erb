@@ -1,22 +1,21 @@
+
 <p style="color: green"><%= notice %></p>
-  <div class="w-[81%] absolute">
-    <div style="margin-top:20px">
-      <div class="mt-10">
-        <div class="mb-8">
-          <%= link_to 'New Suppliers', new_supplier_path, class: 'bg-blue-300 btn-show mr-2' %>
-        </div>
-      </div>
-      <div class="relative overflow-x-auto shadow-md mt-10">
-        <table class="w-full text-md text-left text-gray-700">
-          <thead class="text-xl text-gray-700 uppercase bg-gray-50">
-            <tr>
+<div class="w-[80%] absolute">
+  <div class="mt-4">
+    <h1 class="mb-4 text-4xl font-bold" >Suppliers</h1>
+  </div>
+  <div class="mb-4"><%= link_to "New Suppplier", new_supplier_path, class: "bg-blue-300 px-2 py-2 rounded" %></div>
+  <div class="relative overflow-x-auto shadow-md" >
+    <table class="w-full text-md text-left text-gray-700">
+      <thead class="text-xl text-gray-700 uppercase bg-gray-50">
+          <tr>
               <th class="px-6 py-3">Supplier name</th>
               <th class="px-6 py-3">Contact</th>
               <th class="px-6 py-3">Address</th>
               <th class="px-6 py-3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
+          </tr>
+      </thead>
+      <tbody>
             <% @suppliers.each do |supplier|%>
               <tr class="bg-white border-b hover:bg-gray-300">
                 <td class="px-6 py-4"> <%= link_to supplier.name, supplier_path(supplier) %> </td>
@@ -31,8 +30,11 @@
               </tr>
             <%end%>
           </tbody>
-        </table>
-      </div>
-    </div>
+    </table>
   </div>
+</div>
+
+
+
+
 

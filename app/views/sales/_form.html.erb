@@ -1,7 +1,7 @@
 <%= form_with(model: sale) do |form| %>
   <% if sale.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this purchase from being saved:</h2>
 
       <ul>
         <% sale.errors.each do |error| %>
@@ -11,57 +11,80 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :bill_no, style: "display: block" %>
-    <%= form.text_field :bill_no %>
-  </div>
+  <div class=" overflow-hidden p-8 bg-white border border-gray-200 rounded-lg shadow ">
+    <div class="mb-5">
+      <div class="flex justify-between">
+        <div >
+          <%= form.label :bill_no, class: "block" %>
+          <%= form.text_field :bill_no %>
+        </div>
+        <div>
+          <%= form.label :date, class: "block" %>
+          <%= form.date_field :date %>
+        </div>
+      </div>
+    </div class="">
+     <div class="w-full">
+       <div class="flex justify-between">
+         <div>
+          <%= form.label :customer_name, style: "display: block" %>
+          <%= form.text_field :customer_name %>
+        </div>
+         <div>
+          <div class="field">
+            <%= form.label :product_id %>
+            <%= form.collection_select(:product_id, @products, :id, :name, prompt: true) %>
+          </div>
+        </div>
+       
+           <div class="field">
+            <%= form.label :"Price (per unit)", style: "display: block" %>
+            <%= form.text_field :cost_price, id: "cost_price_field", disabled: true, class:"bg-gray-200" %>
+          </div>
+          <div>
+            <%= form.label :quantity, style: "display: block" %>
+            <%= form.number_field :quantity %>
+          </div>
+          <div>
+            <%= form.label :total, style: "display: block" %>
+            <%= form.text_field :total %>
+          </div>
+       </div>
+     </div>
 
-  <div>
-    <%= form.label :customer_name, style: "display: block" %>
-    <%= form.text_field :customer_name %>
-  </div>
 
-  <div>
-  <%= form.label :product %>
-  <%= form.collection_select :product_id, Product.all, :id, :name, prompt: true %>
-</div>
+<%# bottom section %>
+     <div class="flex mt-6">
+       <div class="pr-5 w-full h-full">
+         <div class="">
+          <%= form.text_area :description, class:"block p-2.5 w-full h-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500",rows: 12, placeholder:"Enter Discription" %>
+         </div>
+       </div>
+       <%# discount section  %>
+        <div class="">
+          <div>
+            <%= form.label :"discount(%)", style: "display: block" %>
+            <%= form.text_field :discount %>
+          </div>
 
-  <div>
-    <%= form.label :quantity, style: "display: block" %>
-    <%= form.number_field :quantity %>
-  </div>
+          <div>
+            <%= form.label :taxable_amount, style: "display: block" %>
+            <%= form.text_field :taxable_amount %>
+          </div>
 
-  <div>
-    <%= form.label :total, style: "display: block" %>
-    <%= form.text_field :total %>
-  </div>
+          <div>
+            <%= form.label :vat, style: "display: block" %>
+            <%= form.text_field :vat %>
+          </div>
 
-  <div>
-    <%= form.label :discount, style: "display: block" %>
-    <%= form.text_field :discount %>
-  </div>
+          <div>
+            <%= form.label :net_total, style: "display: block" %>
+            <%= form.text_field :net_total %>
+          </div>
 
-  <div>
-    <%= form.label :taxable_amount, style: "display: block" %>
-    <%= form.text_field :taxable_amount %>
-  </div>
-
-  <div>
-    <%= form.label :vat, style: "display: block" %>
-    <%= form.text_field :vat %>
-  </div>
-
-  <div>
-    <%= form.label :net_total, style: "display: block" %>
-    <%= form.text_field :net_total %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+        </div>
+      </div>
+      <div class="w-full flex justify-end"><%= form.submit "Submit", class: "btn-submit mt-2 align bg-green-400" %></div>
+     </div>
 <% end %>
+

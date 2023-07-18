@@ -1,4 +1,4 @@
-<aside id="default-sidebar" class=" left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+<aside id="default-sidebar" class=" left-0 w-[13rem] h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50">
       <ul class="space-y-2 font-medium">
          <li>
@@ -26,7 +26,7 @@
          <% end %>
          </li>
          <li>
-            <%= link_to sales_path, class: "flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" do %>
+            <%= link_to new_sale_path, class: "flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group" do %>
             <%= tag.i(class: "fa-brands fa-sellsy") %>
             <span class="flex-1 ml-3 whitespace-nowrap">Sales</span>
             <% end %>
