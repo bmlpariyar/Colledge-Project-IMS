@@ -1,14 +1,37 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Purchases</h1>
 
-<div id="purchases">
-  <% @purchases.each do |purchase| %>
-    <%= render purchase %>
-    <p>
-      <%= link_to "Show this purchase", purchase %>
-    </p>
-  <% end %>
-</div>
+<table>
+    <thead>
+        <tr>
+        <th>Bill No</th>
+        <th>Date</th>
+        <th>Supplier</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Discount (%)</th>
+        <th>Taxable Amount</th>
+        <th>VAT (%)</th>
+        <th>Net Total</th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @purchases.each do |purchase| %>
+      <tr>
+        <td><%= purchase.bill_no %></td>
+        <td><%= purchase.date %></td>
+        <td><%= purchase.supplier.name %></td>
+        <td><%= purchase.product.name %></td>
+        <td><%= purchase.quantity %></td>
+        <td><%= purchase.total %></td>
+        <td><%= purchase.discount %></td>
+        <td><%= purchase.taxable_amount %></td>
+        <td><%= purchase.vat %></td>
+        <td><%= purchase.net_total %></td>
+        <td><%= purchase.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to "New purchase", new_purchase_path %>

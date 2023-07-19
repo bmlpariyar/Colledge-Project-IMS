@@ -1,5 +1,3 @@
-// app/assets/javascripts/purchase.js
-
 document.addEventListener("DOMContentLoaded", function() {
   const supplierSelect = document.querySelector("#purchase_supplier_id");
   const productSelect = document.querySelector("#purchase_product_id");
@@ -75,10 +73,10 @@ document.addEventListener("DOMContentLoaded", function() {
           };
           if(vatValue !== ""){
             const taxAmount = parseInt(document.getElementById("taxAmt_field").value);
-            console.log(typeof(taxAmount));
+            
             const vatAmount = (vatValue/100)*taxAmount;
             
-            const netTotal = taxAmount + vatAmount;
+            const netTotal = (taxAmount + vatAmount).toFixed(2);
             document.getElementById("netTotal_field").value = netTotal;
           };
         });

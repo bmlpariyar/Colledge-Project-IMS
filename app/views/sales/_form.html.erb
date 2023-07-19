@@ -33,7 +33,7 @@
          <div>
           <div class="field">
             <%= form.label :product_id, class:"block" %>
-            <%= form.collection_select(:product_id, @products, :id, :name, {prompt: true},  { class: "w-64" })  %>
+            <%= form.collection_select(:product_id, @products, :id, :name, {prompt: true},  { class: "w-64 product_field" })  %>
           </div>
         </div>
        
@@ -43,11 +43,11 @@
           </div>
           <div>
             <%= form.label :quantity, style: "display: block" %>
-            <%= form.number_field :quantity, class: "w-36" %>
+            <%= form.number_field :quantity, id: "quantity_field", class: "w-36" %>
           </div>
           <div>
             <%= form.label :total, style: "display: block" %>
-            <%= form.text_field :total, class: "w-40" %>
+            <%= form.text_field :total, id:"total_field",readonly: true, class: "bg-gray-200 w-40"%>
           </div>
        </div>
      </div>
@@ -64,22 +64,22 @@
         <div class="">
           <div>
             <%= form.label :"discount(%)", style: "display: block" %>
-            <%= form.text_field :discount %>
+            <%= form.text_field :discount, id:"discount_field" %>
           </div>
 
           <div>
             <%= form.label :taxable_amount, style: "display: block" %>
-            <%= form.text_field :taxable_amount %>
+            <%= form.text_field :taxable_amount, value:0, id:"taxableamt_field",readonly: true, class: "bg-gray-200"  %>
           </div>
 
           <div>
             <%= form.label :vat, style: "display: block" %>
-            <%= form.text_field :vat %>
+            <%= form.text_field :vat, id:"vat_field",value: 13,readonly: true, class: "bg-gray-200" %>
           </div>
 
           <div>
             <%= form.label :net_total, style: "display: block" %>
-            <%= form.text_field :net_total %>
+            <%= form.text_field :net_total,value: 0, id:"nettotal_field",readonly: true, class: "bg-gray-200" %>
           </div>
 
         </div>

@@ -63,7 +63,6 @@ class ProductsController < ApplicationController
     product = Product.find(params[:product_id])
     cost_price = product.cost_price
     render json: cost_price, only: [:id, :cost_price]
-    puts cost_price
   end
 
 

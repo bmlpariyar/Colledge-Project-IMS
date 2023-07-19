@@ -1,3 +1,11 @@
+<style>
+   .report-list {
+   display: none;
+}
+.report-list.active {
+   display: block;
+}
+</style>
 <aside id="default-sidebar" class=" left-0 w-[13rem] h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50">
       <ul class="space-y-2 font-medium">
@@ -36,45 +44,29 @@
             <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group mb-4 report-link">
             <i class="fa-solid fa-chart-pie"></i>
             <span class="flex-1 ml-3 whitespace-nowrap">Report<i class="fa-solid fa-angle-down ml-5"></i></span>
-            
             </a>
-            <div class="report-container mt-2"  style="display: none;">
-               <div class="flex flex-col gap-4">
-                  <div>
-                  <span class="p-6"></span>
-                  <a href="" >Purchase Report</a>
-                  </div>
-                  <div>
-                  <span class="p-6"></span>
-                  <a href="">sales Report</a>
-                  </div>
-               </div>
-            </div>
+            <ul class="report-list hidden">
+               <li><%= link_to 'Purchase Report', purchases_path %></li>
+               <li><%= link_to 'Sales Report', sales_path %></li>
+            </ul>
          </li>  
       </ul>
    </div>
 </aside>
 
 
+
 <script>
-  // Get references to the report links and containers
-  const reportLinks = document.querySelectorAll('.report-link');
-  const reportContainers = document.querySelectorAll('.report-container');
-
-  // Add click event listeners to the report links
-  reportLinks.forEach(function (reportLink) {
-    reportLink.addEventListener('click', function (e) {
-      e.preventDefault(); // Prevent the default behavior of the anchor tag
-      const reportContainer = this.nextElementSibling; // Get the corresponding report container
-
-      // Toggle the display of the report container
-      if (reportContainer.style.display === 'none') {
-        reportContainer.style.display = 'block';
-      } else {
-        reportContainer.style.display = 'none';
-      }
-    });
-  });
+//for dropdown of report
+   $(document).ready(function() {
+      $(".report-link").click(function(e) {
+         e.preventDefault();
+         $(".report-list").toggleClass("active");
+      });
+   });
 </script>
+
+
+
 
 

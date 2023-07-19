@@ -1,14 +1,28 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Sales</h1>
-
-<div id="sales">
-  <% @sales.each do |sale| %>
-    <%= render sale %>
-    <p>
-      <%= link_to "Show this sale", sale %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New sale", new_sale_path %>
+<!-- app/views/sales/report.html.erb -->
+<h1>Sales Report</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Bill No</th>
+      <th>Date</th>
+      <th>Customer Name</th>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sales.each do |sale| %>
+      <tr>
+        <td><%= sale.bill_no %></td>
+        <td><%= sale.date %></td>
+        <td><%= sale.customer_name %></td>
+        <td><%= sale.product.name %></td>
+        <td><%= sale.quantity %></td>
+        <td><%= sale.total %></td>
+        <td><%= sale.description %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

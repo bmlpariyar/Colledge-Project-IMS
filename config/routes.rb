@@ -10,14 +10,7 @@ Rails.application.routes.draw do
   resources :suppliers do
     get 'products', to: 'suppliers#products'
   end
-
   root "home#index"
 
-  
 
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
 end
