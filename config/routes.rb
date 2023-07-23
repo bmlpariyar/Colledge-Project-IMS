@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'ims/main'
   devise_for :users
+  resources :users
   get 'home/index'
   resources :sales
   resources :purchases
@@ -12,5 +13,6 @@ Rails.application.routes.draw do
   end
   root "home#index"
 
+  get 'ims/chart_data', to: 'ims#chart_data'
 
 end

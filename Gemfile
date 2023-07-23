@@ -17,6 +17,10 @@ gem "sprockets-rails"
 
 gem 'pg'
 
+gem 'chartkick', '~> 5.0', '>= 5.0.2'
+
+gem 'groupdate', '~> 6.3'
+
 gem 'foreman', '~> 0.87.2'
 
 gem 'jquery-rails'
