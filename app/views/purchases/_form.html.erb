@@ -17,7 +17,7 @@
       <div class="flex justify-between">
         <div >
           <%= form.label :bill_no, class: "block" %>
-          <%= form.text_field :bill_no %>
+          <%= form.number_field :bill_no %>
         </div>
         <div>
           <%= form.label :date, class: "block" %>
@@ -65,7 +65,7 @@
           <div class="">
             <div>
               <%= form.label :"discount(%)", style: "display: block" %>
-              <%= form.text_field :discount, id: "discount_field" %>
+              <%= form.number_field :discount, id: "discount_field" %>
             </div>
             <div>
               <%= form.label :taxable_amount, style: "display: block" %>

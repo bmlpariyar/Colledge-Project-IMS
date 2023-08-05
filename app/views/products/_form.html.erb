@@ -28,12 +28,12 @@
 
   <div>
     <%= form.label :cost_price, style: "display: block", class:"form-label "  %>
-    <%= form.number_field :cost_price, class:"form-input" %>
+    <%= form.number_field :cost_price, step: "any", class:"form-input" %>
   </div>
 
   <div>
     <%= form.label :selling_price, style: "display: block", class:"form-label "  %>
-    <%= form.text_field :selling_price, class:"form-input" %>
+    <%= form.number_field :selling_price, step: "any", class:"form-input" %>
   </div>
   <div>
     <%= form.submit class:"btn-submit" %>

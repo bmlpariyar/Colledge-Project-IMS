@@ -1,32 +1,32 @@
-
-
-
-  <%= form_with(model: supplier) do |form| %>
-    <% if supplier.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(supplier.errors.count, "error") %> prohibited this supplier from being saved:</h2>
-  
-        <ul>
-          <% supplier.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
+  <%= form_with(model: supplier, id: "supplier-form") do |form| %>
     <div>
       <%= form.label :name, class:"form-label " %>
-      <%= form.text_field :name, class:"form-input" %>
+      <%= form.text_field :name, class: "form-input", id: "supplier_name" %>
+      <% if supplier.errors.has_key?(:name) %>
+        <div class="error-message text-red-500">
+          <%= "Name " +supplier.errors[:name].first %>
+        </div>
+      <% end %>
     </div>
   
     <div>
       <%= form.label :number, class:"form-label" %>
-      <%= form.text_field :number, class:"form-input" %>
+      <%= form.text_field :number, class: "form-input", id: "supplier_number" %>
+      <% if supplier.errors.has_key?(:number) %>
+        <div class="error-message text-red-500">
+          <%= supplier.errors[:number].first %>
+        </div>
+      <% end %>
     </div>
   
     <div>
       <%= form.label :address, class:"form-label" %>
-      <%= form.text_field :address, class:"form-input" %>
+      <%= form.text_field :address, class: "form-input", id: "supplier_address" %>
+      <% if supplier.errors.has_key?(:address) %>
+        <div class="error-message text-red-500">
+          <%= supplier.errors[:address].first %>
+        </div>
+      <% end %>
     </div>
   
     <div>
@@ -37,5 +37,6 @@
       <%= form.submit class:"btn-submit" %>
     </div>
   <% end %>
+
 
 

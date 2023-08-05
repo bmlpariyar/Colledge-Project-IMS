@@ -12,8 +12,8 @@ class SalesController < ApplicationController
 
   # GET /sales/new
   def new
-    @sale = Sale.new
     @products = Product.all
+    @sale = Sale.new
   end
 
   # GET /sales/1/edit
@@ -26,14 +26,19 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to  new_sale_path, notice: "Sale was successfully created." }
+        format.html { redirect_to new_sale_path, notice: "Sale was successfully created." }
         format.json { render :show, status: :created, location: @sale }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html do
+          @products = Product.all
+          render :new, status: :unprocessable_entity
+          end
         format.json { render json: @sale.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+      end 
+    end 
+  end 
+
+
 
   # PATCH/PUT /sales/1 or /sales/1.json
   def update

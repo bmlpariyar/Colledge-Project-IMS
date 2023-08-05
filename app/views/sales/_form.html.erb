@@ -1,7 +1,7 @@
 <%= form_with(model: sale) do |form| %>
-  <% if sale.errors.any? %>
+    <% if sale.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this purchase from being saved:</h2>
+      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
 
       <ul>
         <% sale.errors.each do |error| %>
@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
+
   <div class=" overflow-hidden p-8 bg-white border border-gray-200 rounded-lg shadow ">
     <div class="mb-5">
       <div class="flex justify-between">
         <div >
           <%= form.label :bill_no, class: "block" %>
-          <%= form.text_field :bill_no %>
+          <%= form.number_field :bill_no %>
         </div>
         <div>
           <%= form.label :date, class: "block" %>
@@ -39,7 +40,11 @@
        
            <div class="field">
             <%= form.label :"Price (per unit)", style: "display: block" %>
+            <%begin%>
             <%= form.text_field :cost_price, id: "cost_price_field", disabled: true, class:"bg-gray-200 w-36" %>
+            <%rescue%>
+            <%= form.text_field :product_id, class: "w-64", placeholder: "Product ID not available" %>
+            <%end%>
           </div>
           <div>
             <%= form.label :quantity, style: "display: block" %>
@@ -53,7 +58,7 @@
      </div>
 
 
-<%# bottom section %>
+  <%# bottom section %>
      <div class="flex mt-6">
        <div class="pr-5 w-full h-full">
          <div class="">
@@ -64,7 +69,7 @@
         <div class="">
           <div>
             <%= form.label :"discount(%)", style: "display: block" %>
-            <%= form.text_field :discount, id:"discount_field"%>
+            <%= form.number_field :discount, id:"discount_field"%>
           </div>
           <div>
             <%= form.label :taxable_amount, style: "display: block" %>
