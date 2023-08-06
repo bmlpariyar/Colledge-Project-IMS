@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   root "home#index"
 
   get 'ims/chart_data', to: 'ims#chart_data'
+  get 'getProduct', to: 'products#getProduct'
 
 end

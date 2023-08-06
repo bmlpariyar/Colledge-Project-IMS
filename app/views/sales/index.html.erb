@@ -18,7 +18,7 @@
         <td><%= sale.bill_no %></td>
         <td><%= sale.date %></td>
         <td><%= sale.customer_name %></td>
-        <td><%= sale.product.name %></td>
+        <td><%= link_to sale.product.name, sale_url(sale) %></td>
         <td><%= sale.quantity %></td>
         <td><%= sale.total %></td>
         <td><%= sale.description %></td>

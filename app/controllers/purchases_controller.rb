@@ -25,7 +25,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to purchase_url(@purchase), notice: "Purchase was successfully created." }
+        format.html { redirect_to new_purchase_path, notice: "Purchase Saved Successfully" }
         format.json { render :show, status: :created, location: @purchase }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class PurchasesController < ApplicationController
   def update
     respond_to do |format|
       if @purchase.update(purchase_params)
-        format.html { redirect_to purchase_url(@purchase), notice: "Purchase was successfully updated." }
+        format.html { redirect_to purchase_url(@purchase), notice: "Purchase Updated" }
         format.json { render :show, status: :ok, location: @purchase }
       else
         format.html { render :edit, status: :unprocessable_entity }

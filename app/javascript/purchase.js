@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", function() {
       fetch(`/products/${productId}/getProduct`)
         .then(response => response.json())
         .then(data => {
-          document.getElementById("cost_price_field").value = data;
-          
+          document.getElementById("cost_price_field").value = data.cost_price;
+          data = data.cost_price
           if (quantityValue !== "") {
             const qData = parseInt(quantityValue);
             const cost_price = parseInt(data);

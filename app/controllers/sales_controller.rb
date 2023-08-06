@@ -14,6 +14,7 @@ class SalesController < ApplicationController
   def new
     @products = Product.all
     @sale = Sale.new
+
   end
 
   # GET /sales/1/edit
@@ -26,7 +27,7 @@ class SalesController < ApplicationController
 
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to new_sale_path, notice: "Sale was successfully created." }
+        format.html { redirect_to new_sale_path, notice: "Sale was successfully created."  }
         format.json { render :show, status: :created, location: @sale }
       else
         format.html do

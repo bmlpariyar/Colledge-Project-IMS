@@ -1,10 +1,10 @@
-<%= form_with(model: sale) do |form| %>
+<%= form_with(model: sale, id: "sale-form") do |form| %>
     <% if sale.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
 
       <ul>
-        <% sale.errors.each do |error| %>
+        <% sale.errors.each do |error| %> 
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -41,7 +41,7 @@
            <div class="field">
             <%= form.label :"Price (per unit)", style: "display: block" %>
             <%begin%>
-            <%= form.text_field :cost_price, id: "cost_price_field", disabled: true, class:"bg-gray-200 w-36" %>
+            <%= form.text_field :selling_price, id: "selling_price_field", disabled: true, class:"bg-gray-200 w-36" %>
             <%rescue%>
             <%= form.text_field :product_id, class: "w-64", placeholder: "Product ID not available" %>
             <%end%>
@@ -91,4 +91,5 @@
       <div class="w-full flex justify-end"><%= form.submit "Submit", class: "btn-submit mt-2 align bg-green-400" %></div>
      </div>
 <% end %>
+
 

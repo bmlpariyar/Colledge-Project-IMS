@@ -22,7 +22,7 @@
         <td><%= purchase.bill_no %></td>
         <td><%= purchase.date %></td>
         <td><%= purchase.supplier.name %></td>
-        <td><%= purchase.product.name %></td>
+        <td><%= link_to purchase.product.name, purchase_url(purchase) %></td>
         <td><%= purchase.quantity %></td>
         <td><%= purchase.total %></td>
         <td><%= purchase.discount %></td>

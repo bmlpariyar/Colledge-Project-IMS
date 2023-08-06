@@ -62,10 +62,9 @@ class ProductsController < ApplicationController
   def getProduct
     product = Product.find(params[:product_id])
     cost_price = product.cost_price
-    render json: cost_price, only: [:id, :cost_price]
+    selling_price = product.selling_price
+    render json: { id: product.id,cost_price: cost_price, selling_price: selling_price }
   end
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
