@@ -39,43 +39,6 @@
     }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(saleForm);
-  
-    fetch("/sales", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        if (response.ok) {
-          // If the form submission was successful, reload the page
-          location.reload();
-        } else {
-          return response.json().then((data) => {
-            console.error("Error submitting form:", data);
-  
-            // Assuming you have an element with ID "error-message" to display the error message
-            const errorMessageElement = document.getElementById("error-message");
-            if (errorMessageElement) {
-              errorMessageElement.innerHTML = "<div style='color: red'><h2>" + data.length + " error(s) prohibited this sale from being saved:</h2><ul>";
-  
-              data.forEach((error) => {
-                errorMessageElement.innerHTML += "<li>" + error.full_message + "</li>";
-              });
-  
-              errorMessageElement.innerHTML += "</ul></div>";
-            }
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Error submitting form:", error);
-        // Handle the error if the form submission fails
-      });
-  }
-  
-
   saleForm.addEventListener("change", function(event) {
     const target = event.target;
     if (target.matches(".product_field, #quantity_field, #discount_field")) {

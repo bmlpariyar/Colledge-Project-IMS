@@ -1,11 +1,12 @@
+<div class="w-[81%] absolute bg-slate-50 pl-3 py-5 mt-4 rounded-md shadow-lg">
+<div class="p-4">
 <p style="color: green"><%= notice %></p>
-
 <%= render @purchase %>
+</div>
 
-<div>
-  <%= link_to "Edit this purchase", edit_purchase_path(@purchase) %> |
-  <%= link_to "Back to purchases", purchases_path %>
-
-  <%= button_to "Destroy this purchase", @purchase, method: :delete %>
+<div class="mt-1 p-4 flex">
+  <%= link_to "Back", purchases_path, class:"bg-gray-300 btn-show mr-2" %>
+  <%= button_to "Destroy", @purchase, method: :delete, class:"bg-red-400 btn-show" %>
+</div>
 </div>
 

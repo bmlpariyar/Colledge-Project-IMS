@@ -1,10 +1,11 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @sale %>
-
-<div>
-  <%= link_to "Edit this sale", edit_sale_path(@sale) %> |
-  <%= link_to "Back to sales", sales_path %>
-
-  <%= button_to "Destroy this sale", @sale, method: :delete %>
+<div class="w-[81%] absolute bg-slate-50 pl-3 py-5 mt-4 rounded-md shadow-lg">
+  <div class="p-4">
+    <p style="color: green"><%= notice %></p>
+    <%= render @sale %>
+  </div>
+  
+  <div class="mt-1 p-4 flex">
+    <%= link_to "Back", sales_path, class:"bg-gray-300 btn-show mr-2" %>
+    <%= button_to "Destroy", @sale, method: :delete, class:"bg-red-300 btn-show" %>
+  </div>
 </div>

@@ -1,28 +1,33 @@
-<!-- app/views/sales/report.html.erb -->
-<h1>Sales Report</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Bill No</th>
-      <th>Date</th>
-      <th>Customer Name</th>
-      <th>Product</th>
-      <th>Quantity</th>
-      <th>Total</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sales.each do |sale| %>
-      <tr>
-        <td><%= sale.bill_no %></td>
-        <td><%= sale.date %></td>
-        <td><%= sale.customer_name %></td>
-        <td><%= link_to sale.product.name, sale_url(sale) %></td>
-        <td><%= sale.quantity %></td>
-        <td><%= sale.total %></td>
-        <td><%= sale.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="w-[80%] absolute">
+    <div class="mt-4">
+    <h1 class="mb-4 text-4xl font-bold" >Sales Record</h1>
+  </div>
+  <div class="relative overflow-x-auto shadow-md">
+    <table class="w-full text-md text-left text-gray-700">
+      <thead class="text-lg text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th class="px-6 py-3">Bill No</th>
+          <th class="px-6 py-3">Date</th>
+          <th class="px-6 py-3">Customer Name</th>
+          <th class="px-6 py-3">Product</th>
+          <th class="px-6 py-3">Quantity</th>
+          <th class="px-6 py-3">Total</th>
+          <th class="px-6 py-3">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sales.each do |sale| %>
+          <tr class="bg-white border-b hover:bg-gray-300">
+            <td class="px-6 py-3"><%= sale.bill_no %></td>
+            <td class="px-6 py-3"><%= sale.date %></td>
+            <td class="px-6 py-3"><%= sale.customer_name %></td>
+            <td class="px-6 py-3"><%= link_to sale.product.name, sale_url(sale) %></td>
+            <td class="px-6 py-3"><%= sale.quantity %></td>
+            <td class="px-6 py-3"><%= sale.total %></td>
+            <td class="px-6 py-3"><%= sale.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,37 +1,41 @@
-
-
-<table>
-    <thead>
-        <tr>
-        <th>Bill No</th>
-        <th>Date</th>
-        <th>Supplier</th>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th>Discount (%)</th>
-        <th>Taxable Amount</th>
-        <th>VAT (%)</th>
-        <th>Net Total</th>
-        <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-    <% @purchases.each do |purchase| %>
-      <tr>
-        <td><%= purchase.bill_no %></td>
-        <td><%= purchase.date %></td>
-        <td><%= purchase.supplier.name %></td>
-        <td><%= link_to purchase.product.name, purchase_url(purchase) %></td>
-        <td><%= purchase.quantity %></td>
-        <td><%= purchase.total %></td>
-        <td><%= purchase.discount %></td>
-        <td><%= purchase.taxable_amount %></td>
-        <td><%= purchase.vat %></td>
-        <td><%= purchase.net_total %></td>
-        <td><%= purchase.description %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<div class="w-[80%] absolute">
+<div class="mt-4">
+    <h1 class="mb-4 text-4xl font-bold" >Purchase Records</h1>
+  </div>
+  <div class="relative overflow-x-auto shadow-md">
+    <table class="w-full text-md text-left text-gray-700">
+        <thead class="text-sm text-gray-700 uppercase bg-gray-50">
+            <tr>
+            <th class="px-5 py-3">Bill No</th>
+            <th class="px-6 py-3">Date</th>
+            <th class="px-6 py-3">Supplier</th>
+            <th class="px-6 py-3">Product</th>
+            <th class="px-6 py-3">Quantity</th>
+            <th class="px-6 py-3">Total</th>
+            <th class="px-6 py-3">Discount(%)</th>
+            <th class="px-6 py-3">Taxable Amount</th>
+            <th class="px-6 py-3">VAT(%)</th>
+            <th class="px-6 py-3">Net Total</th>
+            <th class="px-6 py-3">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% @purchases.each do |purchase| %>
+          <tr class="bg-white border-b hover:bg-gray-300">
+            <td class="px-6 py-3"><%= purchase.bill_no %></td>
+            <td class="px-6 py-3"><%= purchase.date %></td>
+            <td class="px-6 py-3"><%= purchase.supplier.name %></td>
+            <td class="px-6 py-3"><%= link_to purchase.product.name, purchase_url(purchase) %></td>
+            <td class="px-6 py-3"><%= purchase.quantity %></td>
+            <td class="px-6 py-3"><%= purchase.total %></td>
+            <td class="px-6 py-3"><%= purchase.discount %></td>
+            <td class="px-6 py-3"><%= purchase.taxable_amount %></td>
+            <td class="px-6 py-3"><%= purchase.vat %></td>
+            <td class="px-6 py-3"><%= purchase.net_total %></td>
+            <td class="px-6 py-3"><%= purchase.description %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
