@@ -22,7 +22,6 @@ class ImsController < ApplicationController
       purchase_data.each do |product_date, count|
       product, date = product_date
       line_chart_data << { name: product, data: { date.to_date => count } }
-      byebug
       end
 
     chart_data = {
