@@ -15,14 +15,19 @@ class ImsController < ApplicationController
       purchase_data = Purchase.joins(:product).group('products.name', 'DATE(purchases.created_at)').count
       product_data = Product.group(:name).count
       sale_data = Sale.joins(:product).group('products.name').group_by_day_of_week('sales.created_at', format: "%a").select('products.name, COUNT(*) as count, MAX(sales.created_at) as created_at').order('count DESC')
-      sale_data = sale_data.map { |entry| [entry.name, entry.count, Date.parse(entry.created_at.strftime('%Y-%m-%d')).wday] }
+      sale_data = sale_data.map do |entry|
+        name = entry.name
+        count = entry.count
+        created_at = entry.created_at
+        next if name.nil? || count.nil? || created_at.nil?
+        [name, count, Date.parse(created_at.strftime('%Y-%m-%d')).wday] 
+      end
 
   
       line_chart_data = []
       purchase_data.each do |product_date, count|
       product, date = product_date
       line_chart_data << { name: product, data: { date.to_date => count } }
-      byebug
       end
 
     chart_data = {
