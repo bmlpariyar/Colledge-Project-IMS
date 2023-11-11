@@ -1,41 +1,79 @@
+<style>
+    @media print {
+      body {
+        visibility: hidden;
+      }
+      #print_table {
+        visibility: visible;
+      }
+    }
+  </style>
+
 <div class="w-[80%] absolute">
 <div class="mt-4">
     <h1 class="mb-4 text-4xl font-bold" >Purchase Records</h1>
   </div>
   <div class="relative overflow-x-auto shadow-md">
-    <table class="w-full text-md text-left text-gray-700">
-        <thead class="text-sm text-gray-700 uppercase bg-gray-50">
-            <tr>
-            <th class="px-5 py-3">Bill No</th>
-            <th class="px-6 py-3">Date</th>
-            <th class="px-6 py-3">Supplier</th>
-            <th class="px-6 py-3">Product</th>
-            <th class="px-6 py-3">Quantity</th>
-            <th class="px-6 py-3">Total</th>
-            <th class="px-6 py-3">Discount(%)</th>
-            <th class="px-6 py-3">Taxable Amount</th>
-            <th class="px-6 py-3">VAT(%)</th>
-            <th class="px-6 py-3">Net Total</th>
-            <th class="px-6 py-3">Description</th>
+  <button onclick="printTable()" class=" mb-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Print</button>
+    <div id="print_table">
+      <table class="w-full text-md text-left text-gray-700 table-data">
+          <thead class="text-sm text-gray-700 uppercase bg-gray-50">
+              <tr>
+              <th class="px-5 py-3">Bill No</th>
+              <th class="px-6 py-3">Date</th>
+              <th class="px-6 py-3">Supplier</th>
+              <th class="px-6 py-3">Product</th>
+              <th class="px-6 py-3">Quantity</th>
+              <th class="px-6 py-3">Total</th>
+              <th class="px-6 py-3">Discount(%)</th>
+              <th class="px-6 py-3">Taxable Amount</th>
+              <th class="px-6 py-3">VAT(%)</th>
+              <th class="px-6 py-3">Net Total</th>
+              <th class="px-6 py-3">Description</th>
+              </tr>
+          </thead>
+          <tbody>
+          <% @purchases.each do |purchase| %>
+            <tr class="bg-white border-b hover:bg-gray-300">
+              <td class="px-6 py-3"><%= purchase.bill_no %></td>
+              <td class="px-6 py-3"><%= purchase.date %></td>
+              <td class="px-6 py-3"><%= purchase.supplier.name %></td>
+              <td class="px-6 py-3"><%= link_to purchase.product.name, purchase_url(purchase) %></td>
+              <td class="px-6 py-3"><%= purchase.quantity %></td>
+              <td class="px-6 py-3"><%= purchase.total %></td>
+              <td class="px-6 py-3"><%= purchase.discount %></td>
+              <td class="px-6 py-3"><%= purchase.taxable_amount %></td>
+              <td class="px-6 py-3"><%= purchase.vat %></td>
+              <td class="px-6 py-3"><%= purchase.net_total %></td>
+              <td class="px-6 py-3"><%= purchase.description %></td>
             </tr>
-        </thead>
-        <tbody>
-        <% @purchases.each do |purchase| %>
-          <tr class="bg-white border-b hover:bg-gray-300">
-            <td class="px-6 py-3"><%= purchase.bill_no %></td>
-            <td class="px-6 py-3"><%= purchase.date %></td>
-            <td class="px-6 py-3"><%= purchase.supplier.name %></td>
-            <td class="px-6 py-3"><%= link_to purchase.product.name, purchase_url(purchase) %></td>
-            <td class="px-6 py-3"><%= purchase.quantity %></td>
-            <td class="px-6 py-3"><%= purchase.total %></td>
-            <td class="px-6 py-3"><%= purchase.discount %></td>
-            <td class="px-6 py-3"><%= purchase.taxable_amount %></td>
-            <td class="px-6 py-3"><%= purchase.vat %></td>
-            <td class="px-6 py-3"><%= purchase.net_total %></td>
-            <td class="px-6 py-3"><%= purchase.description %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
+
+<script>
+    function printTable() {
+      // Open a new window or tab with the table content and additional styling
+      const printWindow = window.open('');
+      printWindow.document.write('<html><head><title>Purchase Records</title>');
+
+      // Add additional styles
+      printWindow.document.write('<style>');
+      printWindow.document.write('body { font-family: Arial, sans-serif; }');
+      printWindow.document.write('table { width: 100%; border: 1px, solid, black; border-collapse: collapse; margin-top: 20px; }');
+      printWindow.document.write('th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }');
+      printWindow.document.write('th { background-color: #f2f2f2; }');
+      printWindow.document.write('</style>');
+
+      printWindow.document.write('</head><body>');
+      printWindow.document.write(document.querySelector('.table-data').outerHTML);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+
+      // Trigger the print dialog in the new window or tab
+      printWindow.print();
+    }
+  </script>

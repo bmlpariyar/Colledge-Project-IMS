@@ -49,11 +49,6 @@ group :development do
   gem "web-console"
 end
 
-group :development do
-#for errors
-  gem "better_errors"
-  gem "binding_of_caller"
-end
 
 group :test do
   gem "capybara"

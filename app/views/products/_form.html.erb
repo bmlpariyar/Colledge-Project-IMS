@@ -1,4 +1,3 @@
-
 <%= form_with(model: product) do |form| %>
   <% if product.errors.any? %>
     <div style="color: red">
@@ -28,15 +27,34 @@
 
   <div>
     <%= form.label :cost_price, style: "display: block", class:"form-label "  %>
-    <%= form.number_field :cost_price, step: "any", class:"form-input" %>
+    <%= form.number_field :cost_price, step: "any", class:"form-input", id: "cost_price" %>
   </div>
 
   <div>
     <%= form.label :selling_price, style: "display: block", class:"form-label "  %>
-    <%= form.number_field :selling_price, step: "any", class:"form-input" %>
+    <%= form.number_field :selling_price, step: "any", class:"form-input", id: "selling_price" %>
+    <p class="error text-red-500 mt-1 mb-3"></p>
   </div>
   <div>
     <%= form.submit class:"btn-submit" %>
   </div>
 <% end %>
+
+<script>
+    $(document).ready(function () {
+    $("#selling_price").on('change', function (event) {
+        var costPrice = parseFloat($("#cost_price").val());
+        var sellingPrice = parseFloat($("#selling_price").val());
+        console.log(costPrice);
+        console.log(sellingPrice);
+
+        if (sellingPrice < costPrice) {
+            $(".error").text("Selling price cannot be less than cost price");
+             event.preventDefault();
+        } else {
+            $(".error").text("");
+        }
+    });
+});
+</script>
 

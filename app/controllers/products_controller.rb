@@ -23,14 +23,20 @@ class ProductsController < ApplicationController
   # POST /products or /products.json
   def create
     @product = Product.new(product_params)
-
+    cost_price = params["product"]["cost_price"].to_i
+    selling_price = params["product"]["selling_price"].to_i
     respond_to do |format|
-      if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
-        format.json { render :show, status: :created, location: @product }
+      if cost_price < selling_price
+        if @product.save
+          format.html { redirect_to product_url(@product), flash: { message: "Product created successfully", type: "success" } }
+          format.json { render :show, status: :created, location: @product }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @product.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_product_path, flash: { message: "Selling price can't be less than cost price", type: "error" } }
+      format.json { head :no_content }
       end
     end
   end
