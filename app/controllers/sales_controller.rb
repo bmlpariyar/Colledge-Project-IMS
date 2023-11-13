@@ -1,5 +1,6 @@
 class SalesController < ApplicationController
-  before_action :set_sale, only: %i[ show edit update destroy ]
+  before_action :set_sale, only: %i[show edit update destroy]
+
 
   # GET /sales or /sales.json
   def index
@@ -64,6 +65,10 @@ class SalesController < ApplicationController
     end
   end
 
+  
+  def stock_report
+    @report_data = ActiveRecord::Base.connection.execute("SELECT(SELECT name FROM products pr WHERE pr.id = p.product_id) AS product_name, p.quantity AS purchase_quantity, s.quantity AS sale_quantity, CASE WHEN (p.quantity - COALESCE(s.quantity, 0)) < 0 THEN 0 ELSE (p.quantity - COALESCE(s.quantity, 0)) END AS remaining_stock FROM purchases p LEFT JOIN sales s ON p.product_id = s.product_id WHERE s.quantity IS NOT NULL")
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sale

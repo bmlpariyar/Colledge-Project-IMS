@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   get 'home/index'
-  resources :sales
+  resources :sales do
+    collection do
+      get 'stock_report', to: 'sales#stock_report'
+    end
+  end
   resources :purchases
   resources :products do
     get 'getProduct', to: 'products#getProduct'
@@ -15,5 +19,6 @@ Rails.application.routes.draw do
 
   get 'ims/chart_data', to: 'ims#chart_data'
   get 'getProduct', to: 'products#getProduct'
+  
 
 end
