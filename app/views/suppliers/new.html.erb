@@ -1,7 +1,11 @@
-<p style="color: green"><%= notice %></p>
+
 <div class="w-[81%] absolute pr-5">
+<% if flash[:message] %>
+  <div class="p-4 mt-2 mb-2 text-sm <%= flash[:type] == 'error' ? 'text-red-600' : 'text-green-600' %> rounded-lg bg-gray-50" role="alert">
+    <span class="font-medium"><%= flash[:message] %></span>
+  </div>
+<% end %>
   <h1 class=" bg-slate-300 py-4 mt-4 rounded-md font-bold text-3xl pl-4 ">Create Supplier</h1>
-  
   <div class="mt-2 pr-3">
   <%= render "form", supplier: @supplier %>
   </div>

@@ -1,6 +1,12 @@
 <div class="w-[81%] absolute bg-slate-50 pl-3 py-5 mt-4 rounded-md shadow-lg">
   <div class="mt-6">
-    <p style="color: green"><%= notice %></p>
+    <% if flash[:message] %>
+      <div class="w-[90%]">
+        <div class="px-3   py-4 text-sm <%= flash[:type] == 'error' ? 'text-red-600' : 'text-green-600' %> rounded-lg bg-gray-200" role="alert">
+          <span class="font-medium"><%= flash[:message] %></span>
+        </div>
+      </div>
+    <%end %>
     <%= render @supplier %>
   </div>
   

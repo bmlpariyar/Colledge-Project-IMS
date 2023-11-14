@@ -1,5 +1,6 @@
 class SuppliersController < ApplicationController
   before_action :set_supplier, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:products]
 
   # GET /suppliers or /suppliers.json
   def index
@@ -22,17 +23,28 @@ class SuppliersController < ApplicationController
   # POST /suppliers or /suppliers.json
   def create
     @supplier = Supplier.new(supplier_params)
-
+  
     respond_to do |format|
-      if @supplier.save
-        format.html { redirect_to supplier_url(@supplier), notice: "Supplier was successfully created." }
-        format.json { render :show, status: :created, location: @supplier }
+      if @supplier.valid?
+        if Supplier.exists?(name: @supplier.name) && Supplier.exists?(number: @supplier.number)
+          format.html { redirect_to new_supplier_path, flash: { message: "Supplier with the same name or number already exists.", type: "error" } }
+          format.json { render json: @supplier.errors, status: :unprocessable_entity }
+        else
+          if @supplier.save
+            format.html { redirect_to supplier_url(@supplier), flash: { message: "Supplier was successfully created.", type: "success" } }
+            format.json { render :show, status: :created, location: @supplier }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @supplier.errors, status: :unprocessable_entity }
+          end
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @supplier.errors, status: :unprocessable_entity }
       end
     end
   end
+  
 
   # PATCH/PUT /suppliers/1 or /suppliers/1.json
   def update

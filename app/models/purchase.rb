@@ -8,6 +8,8 @@ class Purchase < ApplicationRecord
   validate :positive_discount
   validate :date_present
 
+
+
   private
 
   def positive_bill_no
@@ -19,9 +21,11 @@ class Purchase < ApplicationRecord
   def date_present
     if !date.present?
       errors.add(:date, "Please select a date")
+    elsif date.present? && date > Date.current
+      errors.add(:date,"Please select a date on or before today")
     end
-    
   end
+
 
   def positive_quantity
     if quantity.present? && quantity <= 0
